@@ -47,16 +47,24 @@ module.exports.moviesController = {
   },
   getMovies: async (req, res) => {
     try {
-      const Movie = await Movie.find({}).populate("category");
-      res.json(Movie);
+      const movie = await Movie.find({}).populate("category");
+      res.json(movie);
+    } catch (err) {
+      res.json(err);
+    }
+  },
+  getMovieById:async (req, res) => {
+    try {
+      const movie = await Movie.findById(req.params.id).populate("category");
+      res.json(movie);
     } catch (err) {
       res.json(err);
     }
   },
   getMoviesByCategory: async (req, res) => {
     try {
-      const Movie = await Movie.find({ category: req.params.id });
-      res.json(Movie);
+      const movie = await Movie.find({ category: req.params.id }).populate("category");
+      res.json(movie);
     } catch (err) {
       res.json(err);
     }
