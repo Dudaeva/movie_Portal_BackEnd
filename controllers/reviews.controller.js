@@ -15,7 +15,7 @@ module.exports.reviewsController = {
   },
   getReviews: async (req, res) => {
     try {
-      const reviews = await Review.findById({ movieId: req.params.id });
+      const reviews = await Review.find({ movieId: req.params.id })
       res.json(reviews);
     } catch {
       res.json("error");
